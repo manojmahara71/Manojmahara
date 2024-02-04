@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manoj Mahara - Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            position: relative;
+            display: flex;
+            justify-content: left;
+            align-items: left;
+        }
+
+        header img {
+            width: 50px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 10px; /* Add some spacing between logo and title */
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px 20px;
+            text-align: right;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: right;
+        }
+
+        nav a {
+            color: #6ead32;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2em;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+            cursor: pointer; /* Added cursor style */
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #ffcc00;
+            transition: width 0.3s, left 0.3s;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+            width: calc(100% - 40px);
+            left: 20px;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #000000;
+            overflow-x: hidden;
+            transition: width 0.5s ease, transform 0.5s ease;
+            transform: perspective(800px) rotateY(-90deg);
+        }
+
+        .sidebar.open {
+            width: 250px;
+            transform: perspective(800px) rotateY(0deg);
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #2903e8;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 36px;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .profile, .about, .skills, .projects, .social-links {
+            flex: 1 1 calc(50% - 40px);
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+            opacity: 0; /* Initially hidden */
+            animation: fadeInUp 1s ease forwards; /* Apply animation */
+            transition: transform 0.5s ease; /* Added transition */
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile img {
+            width: 30%;
+            border-radius: 10px;
+            animation: fadeInLeft 1s ease forwards; /* Apply animation */
+            transition: transform 0.5s ease; /* Added transition */
+        }
+
+        .profile:hover img { /* Added hover effect */
+            transform: scale(1.1); /* Increase size on hover */
+        }
+
+        .about h2, .skills h2, .projects h2 {
+            margin-top: 15px;
+            font-size: 1.5em;
+            animation: fadeInRight 1s ease forwards; /* Apply animation */
+        }
+
+        .about:hover h2, .skills:hover h2, .projects:hover h2 {
+            transform: scale(1.1); /* Increase size on hover */
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about p, .skills ul, .projects ul {
+            font-size: 1.2em;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease forwards; /* Apply animation */
+        }
+
+        .skills ul, .projects ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .skills li, .projects li {
+            margin-bottom: 10px;
+        }
+
+        .projects li a {
+            color: #00ff04;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .projects li a:hover {
+            color: #ff0000;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            clear: both;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links li {
+            display: inline-block;
+        }
+
+        .social-links li a {
+            display: inline-block;
+            width: 50px; /* Adjusted width */
+            height: 50px; /* Adjusted height */
+            padding: 10px; /* Adjusted padding */
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            line-height: 30px; /* Adjusted line-height */
+            transition: background-color 0.3s, transform 0.3s; /* Added transition */
+            cursor: pointer; /* Added cursor style */
+        }
+
+        .social-links li a img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .social-links li a:hover {
+            background-color: #ffcc00;
+            transform: scale(1.1); /* Increase size on hover */
+        }
+
+        /* Media Queries */
+        @media only screen and (max-width: 768px) {
+            nav {
+                position: fixed;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                transform: translateY(100%);
+            }
+
+            nav a {
+                margin: 10px 0;
+                display: block;
+            }
+
+            nav a::after {
+                bottom: -10px;
+            }
+
+            .sidebar {
+                padding-top: 0;
+                height: 100%;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .profile, .about, .skills, .projects, .social-links {
+                flex: 1 1 100%;
+                margin-bottom: 20px;
+            }
+
+            .profile img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo2.webp" alt="Logo">
+        <h2>Manoj Mahara</h2>
+    </header>
+
+    <nav>
+        <a href="javascript:void(0)" class="open-btn" onclick="toggleNav()">☰ </a>
+      <br>
+      <br>
+      <br>
+        <a href="#profile">Profile</a>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Connect</a>
+    </nav>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">×</a>
+        <a href="#profile">Profile</a>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Connect</a>
+    </div>
+
+    <div class="container" id="profile">
+        <div class="profile">
+            <h2>Profile</h2>
+            <img src="profile.jpg" alt="Profile Picture">
+            <ul>
+                <li>Name : Manoj Mahara</li>
+                <li>Age : 19</li>
+                <li>Study : Diploma in computer engineering</li>
+                <li>From : Heaven</li>
+            </ul>
+        </div>
+
+        <div class="about" id="about">
+            <h2>About Me</h2>
+            <p> Hey there,
+                 My name is Manoj Mahara, im a student currently pursuing a diploma in computer engineering.
+                  I've always been fascinated by technology, especially computers and software development.
+                  That's why I decided to dive into this field headfirst!  <br>
+                  <br>
+                  I'm always seeking out new opportunities to expand my knowledge and skills.
+                   Whether it's through coursework, projects, or extracurricular activities, 
+                   I'm constantly challenging myself to grow and improve.</p>
+        </div>
+
+        <div class="skills" id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Responsive Design</li>
+                <li>just kidding guys</li>
+                <li>Webiste build</li>
+            </ul>
+        </div>
+
+        <div class="projects" id="projects">
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="login.html">login form</a></li>
+                <li><a href="fb prof.html">Facebook Clone</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="#">PEnding </a></li>
+                <li><a href="#">Unavilable</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p>Connect with me on:</p>
+        <ul class="social-links">
+            <li><a href="https://www.facebook.com/manojmahara01" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a></li>
+            <li><a href="https://www.instagram.com/manish_mahara_01" target="_blank"><img src="in.png" alt="Instagram"></a></li>
+            <li><a href="https://www.youtube.com/manojmahara01" target="_blank"><img src="yout.png" alt="Instagram"></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            sidebar.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

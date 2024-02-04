@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Profile Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        /* Login Form Styles */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4267B2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #3b5998;
+        }
+
+        /* Profile Page Styles */
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info p {
+            color: #333;
+        }
+
+        .profile-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-links a {
+            margin: 0 10px;
+            color: #4267B2;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .profile-links a:hover {
+            color: #3b5998;
+        }
+
+        .logout-btn {
+            background-color: #4267B2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #3b5998;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login-form" action="#">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <button type="submit" onclick="login()">Login</button>
+        </form>
+    </div>
+
+    <div class="profile-container" style="display: none;">
+        <h2>Welcome to Your Profile</h2>
+        <div class="profile-info">
+            <img id="profile-pic" src="" alt="Profile Picture">
+            <p id="profile-name"></p>
+        </div>
+        <div class="profile-links">
+            <a href="#" id="timeline-link">Timeline</a>
+            <a href="#" id="photos-link">Photos</a>
+            <a href="calendar.html" id="Calendar-link">Calendar</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+<
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if username and password are correct (dummy check)
+            if (username === "Manoj Mahara" && password === "manoj") {
+                // Show profile page and hide login form
+                document.querySelector(".login-container").style.display = "none";
+                document.querySelector(".profile-container").style.display = "block";
+                // Update profile info
+                document.getElementById("profile-name").textContent = "Manoj Mahara";
+                document.getElementById("profile-pic").src = "profile.jpg";
+                document.getElementById("timeline-link").href = "timeline1.html";
+           document.getElementById("photos-link").href = "photo.html";
+           document.getElementById("calendar-link").href = "calendar.html";
+               
+            } else if (username === "Kiran Mahara" && password === "kiran") {
+                // Show profile page and hide login form
+                document.querySelector(".login-container").style.display = "none";
+                document.querySelector(".profile-container").style.display = "block";
+                // Update profile info
+                document.getElementById("profile-name").textContent = "Kiran Mahara";
+                document.getElementById("profile-pic").src = "krn.jpg";
+                document.getElementById("timeline-link").href = "timeline.html";
+                document.getElementById("photos-link").href = "photo1.html";
+                document.getElementById("calendar-link").href = "calendar.html";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+
+        function logout() {
+            // Show login form and hide profile page
+            document.querySelector(".login-container").style.display = "block";
+            document.querySelector(".profile-container").style.display = "none";
+            // Clear input fields
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }
+    </script>
+    >
+</body>
+</html>

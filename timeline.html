@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline with Photos</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.timeline {
+  position: relative;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 40px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25px;
+  width: 2px;
+  height: 100%;
+  background-color: #333;
+}
+
+.timeline-date {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.timeline-content {
+  background-color: #f9f9f9;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-title {
+  margin-top: 0;
+}
+
+.timeline-description {
+  margin-bottom: 0;
+}
+
+.timeline-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Timeline with Photos</h1>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">mar 2023</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title">Patan</h3>
+        <p class="timeline-description">What a time.</p>
+        <img class="timeline-img" src="krn.jpg" alt="Photo 1">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date"> mar 2023</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title">at patan</h3>
+        <p class="timeline-description">What a time.</p>
+        <img class="timeline-img" src="bth.jpg" alt="Photo 2">
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 2023</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title">Event 3</h3>
+        <p class="timeline-description">Description of Event 3.</p>
+        <img class="timeline-img" src="krn1.jpg" alt="Photo 3">
+      </div>
+    </div>
+    <!-- Add more timeline items here -->
+  </div>
+</div>
+
+</body>
+</html>

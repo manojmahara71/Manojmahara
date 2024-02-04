@@ -1,0 +1,239 @@
+/* styles.css */
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add some spacing between logo and title */
+}
+
+nav {
+    background-color: #444;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links li a {
+    color: #6ead32;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.nav-links li a:hover {
+    color: #ffcc00;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.profile, .about, .skills, .projects, .social-links {
+    flex: 1 1 calc(50% - 20px);
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile:hover, .about:hover, .skills:hover, .projects:hover, .social-links:hover {
+    transform: scale(1.05);
+}
+
+.profile img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about p {
+    line-height: 1.6;
+}
+
+.skills ul, .projects ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.skills li, .projects li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    clear: both;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links li {
+    display: inline-block;
+}
+
+.social-links li a {
+    display: inline-block;
+    width: 50px; /* Adjusted width */
+    height: 50px; /* Adjusted height */
+    padding: 10px; /* Adjusted padding */
+    border-radius: 50%;
+    background-color: #fff;
+    text-align: center;
+    line-height: 30px; /* Adjusted line-height */
+    transition: background-color 0.3s, transform 0.3s; /* Added transition */
+    cursor: pointer; /* Added cursor style */
+}
+
+.social-links li a img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.social-links li a:hover {
+    background-color: #ffcc00;
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        top: 60px;
+        left: 0;
+        background-color: #444;
+        padding: 10px 0;
+        z-index: 1;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 5px 0;
+    }
+
+    .sidebar {
+        padding-top: 60px;
+    }
+
+    .profile, .about, .skills, .projects, .social-links {
+        flex: 1 1 100%;
+    }
+}
