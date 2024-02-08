@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Cam</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-jV4mVO1Ok6/P7pkLz2O5RiXEpsMUmjlzzAeUb/5y/xG7x0aWqITgRFN3+Pz31SGK" crossorigin="anonymous">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  #controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    margin: 0 10px;
+    padding: 15px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #video-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  #video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  #captured {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .download-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+  .download-button:hover {
+    background-color: #0056b3;
+  }
+  .download-button i {
+    margin-right: 5px;
+  }
+  @media screen and (max-width: 600px) {
+    #controls {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Advanced Camera Example</h1>
+<div id="controls">
+  <button onclick="switchCamera()"><i class="fas fa-sync-alt"></i> Switch Camera</button>
+  <button onclick="takePhoto()"><i class="fas fa-camera"></i> Take Photo</button>
+  <button onclick="startRecording()"><i class="fas fa-video"></i> Start Recording</button>
+  <button onclick="stopRecording()"><i class="fas fa-stop"></i> Stop Recording</button>
+</div>
+<div id="video-container">
+  <video id="video" autoplay></video>
+</div>
+<div id="captured"></div>
+<script>
+  let mediaStream;
+  let recorder;
+  let capturedMedia = [];
+
+  function switchCamera() {
+    mediaStream.getTracks().forEach(track => {
+      track.stop();
+    });
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+      .then(function(stream) {
+        mediaStream = stream;
+        let video = document.getElementById('video');
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = function(e) {
+          video.play();
+        };
+      })
+      .catch(function(err) {
+        console.log('Error switching camera: ' + err);
+      });
+  }
+
+  function takePhoto() {
+    let canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    let photo = document.createElement('img');
+    photo.src = canvas.toDataURL('image/png');
+    document.getElementById('captured').appendChild(photo);
+    capturedMedia.push(photo.src);
+    createDownloadButton(photo.src);
+  }
+
+  function startRecording() {
+    let options = { mimeType: 'video/webm; codecs=vp9' };
+    recorder = new MediaRecorder(mediaStream, options);
+    let chunks = [];
+    recorder.ondataavailable = function(e) {
+      chunks.push(e.data);
+    };
+    recorder.onstop = function(e) {
+      let videoBlob = new Blob(chunks, { type: 'video/webm' });
+      let videoURL = URL.createObjectURL(videoBlob);
+      let video = document.createElement('video');
+      video.controls = true;
+      video.src = videoURL;
+      document.getElementById('captured').appendChild(video);
+      capturedMedia.push(videoURL);
+      createDownloadButton(videoURL);
+    };
+    recorder.start();
+  }
+
+  function stopRecording() {
+    recorder.stop();
+  }
+
+  function createDownloadButton(url) {
+    let downloadButton = document.createElement('a');
+    downloadButton.href = url;
+    downloadButton.download = 'media';
+    downloadButton.className = 'download-button';
+    downloadButton.innerHTML = '<i class="fas fa-download"></i> Save';
+    document.getElementById('captured').appendChild(downloadButton);
+  }
+
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+      mediaStream = stream;
+      let video = document.getElementById('video');
+      video.srcObject = mediaStream;
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    })
+    .catch(function(err) {
+      console.log('Error accessing the camera: ' + err);
+    });
+</script>
+</body>
+</html>

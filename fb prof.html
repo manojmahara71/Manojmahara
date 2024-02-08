@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Profile Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        /* Login Form Styles */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4267B2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #3b5998;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Profile Header */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 2px solid #dbdbdb;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            color: #262626;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+            color: #262626;
+        }
+
+        /* Profile Menu */
+        .profile-menu {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #dbdbdb;
+            margin-bottom: 20px;
+        }
+
+        .profile-menu a {
+            color: #262626;
+            text-decoration: none;
+            font-weight: bold;
+            padding-bottom: 5px;
+            transition: border-bottom 0.3s;
+        }
+
+        .profile-menu a:hover {
+            border-bottom: 2px solid #262626;
+        }
+
+        /* Profile Options */
+        .profile-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .profile-options a {
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #262626;
+            transition: background-color 0.3s;
+        }
+
+        .profile-options a:hover {
+            background-color: #f0f2f5;
+        }
+
+        /* Edit Profile Form */
+        .edit-profile-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .edit-profile-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Settings Form */
+        .settings-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .settings-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .photo-gallery img {
+            width: calc(33.333% - 10px);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login-form" action="#">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <button type="submit" onclick="login()">Login</button>
+        </form>
+    </div>
+
+    <!-- Profile Container for Manoj Mahara -->
+    <div class="profile-container manoj" style="display: none;">
+        <div class="profile-header">
+            <img class="profile-picture" src="manoj.jpg" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Manoj Mahara</h2>
+                <p>Bio: Web Developer | Photographer</p>
+                <p>Followers: 2M | Following: 100 | Posts: 150</p>
+            </div>
+        </div>
+        <div class="profile-menu">
+            <a href="photo.html">Posts</a>
+            <a href="photo.html">Stories</a>
+            <a href="timeline1.html">Highlights</a>
+            <a href="#" onclick="toggleEditProfile('.manoj')">Edit Profile</a>
+            <a href="#" onclick="toggleSettings('.manoj')">Settings</a>
+        </div>
+        <div class="edit-profile-form manoj">
+            <input type="text" id="edit-username-manoj" placeholder="Username">
+            <input type="text" id="edit-bio-manoj" placeholder="Bio">
+            <input type="number" id="edit-followers-manoj" placeholder="Followers">
+            <input type="number" id="edit-following-manoj" placeholder="Following">
+            <input type="number" id="edit-posts-manoj" placeholder="Posts">
+            <button onclick="saveProfile('.manoj')">Save</button>
+        </div>
+        <div class="settings-form manoj">
+            <input type="password" id="old-password" placeholder="Old Password">
+            <input type="password" id="new-password" placeholder="New Password">
+            <input type="password" id="confirm-password" placeholder="Confirm Password">
+            <button onclick="changePassword('.manoj')">Change Password</button>
+            <button onclick="resetPassword('.manoj')">Reset Password</button>
+            <button onclick="togglePrivacy('.manoj')">Privacy Settings</button>
+            <button onclick="deleteAccount('.manoj')">Delete Account</button>
+        </div>
+        <div class="photo-gallery">
+            <img src="bth.jpg" alt="Photo 1">
+            <img src="manoj1.jpg" alt="Photo 2">
+            <img src="manoj2.jpg" alt="Photo 3">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="profile-options">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <!-- Profile Container for Kiran Sharma -->
+    <div class="profile-container kiran" style="display: none;">
+        <!-- Kiran's profile content -->
+        <div class="profile-header">
+            <img class="profile-picture" src="krn.jpg" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Kiran Mahara</h2>
+                <p>Bio: Graphic Designer | Topper</p>
+                <p>Followers: 50k | Following: 200 | Posts: 100</p>
+            </div>
+        </div>
+        <div class="profile-menu">
+            <a href="photo1.html">Posts</a>
+            <a href="photo1.html">Stories</a>
+            <a href="timeline.html">Highlights</a>
+            <a href="#" onclick="toggleEditProfile('.kiran')">Edit Profile</a>
+            <a href="#" onclick="toggleSettings('.kiran')">Settings</a>
+        </div>
+        <div class="edit-profile-form kiran">
+            <input type="text" id="edit-username-kiran" placeholder="Username">
+            <input type="text" id="edit-bio-kiran" placeholder="Bio">
+            <input type="number" id="edit-followers-kiran" placeholder="Followers">
+            <input type="number" id="edit-following-kiran" placeholder="Following">
+            <input type="number" id="edit-posts-kiran" placeholder="Posts">
+            <button onclick="saveProfile('.kiran')">Save</button>
+        </div>
+        <div class="settings-form kiran">
+            <input type="password" id="old-password" placeholder="Old Password">
+            <input type="password" id="new-password" placeholder="New Password">
+            <input type="password" id="confirm-password" placeholder="Confirm Password">
+            <button onclick="changePassword('.kiran')">Change Password</button>
+            <button onclick="resetPassword('.kiran')">Reset Password</button>
+            <button onclick="togglePrivacy('.kiran')">Privacy Settings</button>
+            <button onclick="deleteAccount('.kiran')">Delete Account</button>
+        </div>
+        <div class="photo-gallery">
+            <img src="krn.jpg" alt="Photo 1">
+            <img src="krn2.jpg" alt="Photo 2">
+            <img src="krn.jpg" alt="Photo 3">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="profile-options">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <!-- Profile Container for Sarah Johnson -->
+    <div class="profile-container sarah" style="display: none;">
+        <!-- Sarah's profile content -->
+        <div class="profile-header">
+            <img class="profile-picture" src="jny.JPG" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Keshab Dhami</h2>
+                <p>Bio: Travel Enthusiast | Pornstar</p>
+                <p>Followers: 20k | Following: 500 | Posts: 300</p>
+            </div>
+        </div>
+        <div class="profile-menu">
+            <a href="photo2.html">Posts</a>
+            <a href="photo2.html">Stories</a>
+            <a href="timeline2.html">Highlights</a>
+            <a href="#" onclick="toggleEditProfile('.sarah')">Edit Profile</a>
+            <a href="#" onclick="toggleSettings('.sarah')">Settings</a>
+        </div>
+        <div class="edit-profile-form sarah">
+            <input type="text" id="edit-username-sarah" placeholder="Username">
+            <input type="text" id="edit-bio-sarah" placeholder="Bio">
+            <input type="number" id="edit-followers-sarah" placeholder="Followers">
+            <input type="number" id="edit-following-sarah" placeholder="Following">
+            <input type="number" id="edit-posts-sarah" placeholder="Posts">
+            <button onclick="saveProfile('.sarah')">Save</button>
+        </div>
+        <div class="settings-form sarah">
+            <input type="password" id="old-password" placeholder="Old Password">
+            <input type="password" id="new-password" placeholder="New Password">
+            <input type="password" id="confirm-password" placeholder="Confirm Password">
+            <button onclick="changePassword('.sarah')">Change Password</button>
+            <button onclick="resetPassword('.sarah')">Reset Password</button>
+            <button onclick="togglePrivacy('.sarah')">Privacy Settings</button>
+            <button onclick="deleteAccount('.sarah')">Delete Account</button>
+        </div>
+        <div class="photo-gallery">
+            <img src="jny.JPG" alt="Photo 1">
+            <img src="jny1.JPG" alt="Photo 2">
+            <img src="jny2.JPG" alt="Photo 3">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="profile-options">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <!-- Profile Container for John Doe -->
+    <div class="profile-container john" style="display: none;">
+        <!-- John's profile content -->
+        <div class="profile-header">
+            <img class="profile-picture" src="john.jpg" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>John Doe</h2>
+                <p>Bio: Entrepreneur | Investor</p>
+                <p>Followers: 50k | Following: 1000 | Posts: 500</p>
+            </div>
+        </div>
+        <div class="profile-menu">
+            <a href="#">Posts</a>
+            <a href="#">Stories</a>
+            <a href="#">Highlights</a>
+            <a href="#" onclick="toggleEditProfile('.john')">Edit Profile</a>
+            <a href="#" onclick="toggleSettings('.')">Settings</a>
+        </div>
+        <div class="edit-profile-form john">
+            <input type="text" id="edit-username-john" placeholder="Username">
+            <input type="text" id="edit-bio-john" placeholder="Bio">
+            <input type="number" id="edit-followers-john" placeholder="Followers">
+            <input type="number" id="edit-following-john" placeholder="Following">
+            <input type="number" id="edit-posts-john" placeholder="Posts">
+            <button onclick="saveProfile('.john')">Save</button>
+        </div>
+        <div class="settings-form john">
+            <input type="password" id="old-password" placeholder="Old Password">
+            <input type="password" id="new-password" placeholder="New Password">
+            <input type="password" id="confirm-password" placeholder="Confirm Password">
+            <button onclick="changePassword('.john')">Change Password</button>
+            <button onclick="resetPassword('.john')">Reset Password</button>
+            <button onclick="togglePrivacy('.john')">Privacy Settings</button>
+            <button onclick="deleteAccount('.john')">Delete Account</button>
+        </div>
+        <div class="photo-gallery">
+            <img src="ima" alt="Photo 1">
+            <img src="image2.jpg" alt="Photo 2">
+            <img src="image3.jpg" alt="Photo 3">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="profile-options">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Login function
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check username and password
+            if (username === "manoj" && password === "manoj") {
+                showProfile('.manoj');
+            } else if (username === "kiran" && password === "kiran") {
+                showProfile('.kiran');
+            } else if (username === "keshab" && password === "jony") {
+                showProfile('.sarah');
+            } else if (username === "santosh" && password === "santu") {
+                showProfile('.john');
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+
+        // Show Profile
+        function showProfile(profileClass) {
+            // Hide login form
+            document.querySelector(".login-container").style.display = "none";
+
+            // Show profile based on profileClass
+            document.querySelector(profileClass).style.display = "block";
+        }
+
+        // Toggle Edit Profile Form
+        function toggleEditProfile(profileClass) {
+            // Toggle visibility of edit profile form
+            var editProfileForm = document.querySelector(profileClass + " .edit-profile-form");
+            editProfileForm.style.display === "none" ? editProfileForm.style.display = "block" : editProfileForm.style.display = "none";
+        }
+
+        // Toggle Settings Form
+        function toggleSettings(profileClass) {
+            // Toggle visibility of settings form
+            var settingsForm = document.querySelector(profileClass + " .settings-form");
+            settingsForm.style.display === "none" ? settingsForm.style.display = "block" : settingsForm.style.display = "none";
+        }
+
+        // Save Profile
+        function saveProfile(profileClass) {
+            // Get input values
+            var username = document.getElementById("edit-username" + profileClass).value;
+            var bio = document.getElementById("edit-bio" + profileClass).value;
+            var followers = document.getElementById("edit-followers" + profileClass).value;
+            var following = document.getElementById("edit-following" + profileClass).value;
+            var posts = document.getElementById("edit-posts" + profileClass).value;
+
+            // Update profile info
+            var profileInfo = document.querySelector(profileClass + " .profile-info");
+            profileInfo.querySelector("h2").innerText = username;
+            profileInfo.querySelector("p:nth-child(2)").innerText = "Bio: " + bio;
+            profileInfo.querySelector("p:nth-child(3)").innerText = "Followers: " + followers + " | Following: " + following + " | Posts: " + posts;
+
+            // Hide edit profile form
+            var editProfileForm = document.querySelector(profileClass + " .edit-profile-form");
+            editProfileForm.style.display = "none";
+
+            // Optionally, you can send this data to a server for processing
+        }
+
+        // Change Password
+        function changePassword(profileClass) {
+            // Implement change password functionality here
+            alert("Password changed successfully!");
+        }
+
+        // Reset Password
+        function resetPassword(profileClass) {
+            // Implement reset password functionality here
+            alert("Password reset link sent successfully!");
+        }
+
+        // Toggle Privacy Settings
+        function togglePrivacy(profileClass) {
+            // Implement toggle privacy settings functionality here
+            alert("Privacy settings updated successfully!");
+        }
+
+        // Delete Account
+        function deleteAccount(profileClass) {
+            // Implement delete account functionality here
+            alert("Account deleted successfully!");
+        }
+
+        // Logout
+        function logout() {
+            // Reload the page to simulate logout
+            location.reload();
+        }
+    </script>
+</body>
+</html>
