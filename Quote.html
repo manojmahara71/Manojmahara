@@ -18,130 +18,42 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
   h1 {
-    text-align: center;
     color: #333;
   }
-  form {
-    margin-bottom: 20px;
-  }
-  input[type="text"], input[type="password"], select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  .quote-input, .shayari-input, .ghazal-input {
-    display: none;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
+  .session-link {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
-    border: none;
+    text-decoration: none;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
   }
-  button:hover {
+  .session-link:hover {
     background-color: #45a049;
-  }
-  .sessions {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-  }
-  .session {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Session Page</h1>
-  <form id="sessionForm">
-    <select id="sessionType">
-      <option value="">Select Session Type</option>
-      <option value="quote">Quote</option>
-      <option value="shayari">सायरी</option>
-      <option value="ghazal">गज़ल</option>
-    </select>
-    <input type="text" class="quote-input" placeholder="Enter your quote">
-    <input type="text" class="shayari-input" placeholder="Enter your सायरी">
-    <input type="text" class="ghazal-input" placeholder="Enter your गज़ल">
-    <button type="submit">Add Session</button>
-  </form>
-  <div class="sessions" id="sessionList"></div>
+  <h1>Select Session Type</h1>
+  <a href="#" class="session-link" onclick="openLink('सायरी')">सायरी</a>
+  <a href="#" class="session-link" onclick="openLink('Quote\'s')">Quote's</a>
+  <a href="#" class="session-link" onclick="openLink('गजल')">गजल</a>
 </div>
 <script>
-  const sessionForm = document.getElementById('sessionForm');
-  const sessionType = document.getElementById('sessionType');
-  const quoteInput = document.querySelector('.quote-input');
-  const shayariInput = document.querySelector('.shayari-input');
-  const ghazalInput = document.querySelector('.ghazal-input');
-  const sessionList = document.getElementById('sessionList');
-
-  // Show input fields based on selected session type
-  sessionType.addEventListener('change', function() {
-    const selectedType = sessionType.value;
-    if (selectedType === 'quote') {
-      quoteInput.style.display = 'block';
-      shayariInput.style.display = 'none';
-      ghazalInput.style.display = 'none';
-    } else if (selectedType === 'shayari') {
-      quoteInput.style.display = 'none';
-      shayariInput.style.display = 'block';
-      ghazalInput.style.display = 'none';
-    } else if (selectedType === 'ghazal') {
-      quoteInput.style.display = 'none';
-      shayariInput.style.display = 'none';
-      ghazalInput.style.display = 'block';
-    } else {
-      quoteInput.style.display = 'none';
-      shayariInput.style.display = 'none';
-      ghazalInput.style.display = 'none';
+  function openLink(sessionType) {
+    if (sessionType === 'सायरी') {
+      window.location.href = 'link_to_shayari_page.html';
+    } else if (sessionType === 'Quote\'s') {
+      window.location.href = 'link_to_quotes_page.html';
+    } else if (sessionType === 'गजल') {
+      window.location.href = 'link_to_ghazal_page.html';
     }
-  });
-
-  // Add session to the list
-  sessionForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
-    const selectedType = sessionType.value;
-    let sessionText = '';
-    if (selectedType === 'quote') {
-      sessionText = quoteInput.value.trim();
-    } else if (selectedType === 'shayari') {
-      sessionText = shayariInput.value.trim();
-    } else if (selectedType === 'ghazal') {
-      sessionText = ghazalInput.value.trim();
-    }
-    if (sessionText !== '') {
-      addSession(selectedType, sessionText);
-      resetInputs();
-    }
-  });
-
-  // Function to add session to list
-  function addSession(type, text) {
-    const sessionElement = document.createElement('div');
-    sessionElement.classList.add('session');
-    sessionElement.textContent = `${type.toUpperCase()}: ${text}`;
-    sessionList.appendChild(sessionElement);
-  }
-
-  // Function to reset input fields
-  function resetInputs() {
-    quoteInput.value = '';
-    shayariInput.value = '';
-    ghazalInput.value = '';
   }
 </script>
 </body>
