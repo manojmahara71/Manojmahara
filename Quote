@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Website</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background-image: url('hero-bg.jpg');
+            background-size: cover;
+            color: #fff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 10px 0;
+            }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index
+html">Home</a></li>
+                <li><a href="inde.html">About</a></li>
+                <li><a href="index.html">Services</a></li>
+                <li><a href="index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Welcome to our Amazing Website!</h1>
+        <p>Where creativity meets functionality.</p>
+        <a href="#" class="btn">Learn More</a>
+    </section>
+    <!-- Quotes -->
+    <section class="quotes">
+        <h2>Quotes</h2>
+        <ul>
+            <li>"Simplicity is the ultimate sophistication." - Leonardo da Vinci</li>
+            <li>"Design is not just what it looks like and feels like. Design is how it works." - Steve Jobs</li>
+            <li>"Good design is like a refrigerator—when it works, no one notices, but when it doesn’t, it sure stinks." - Irene Au</li>
+            <li>"The details are not the details. They make the design." - Charles Eames</li>
+            <li>"Design is thinking made visual." - Saul Bass</li>
+            <li>"Creativity is intelligence having fun." - Albert Einstein</li>
+            <li>"Design adds value faster than it adds costs." - Joel Spolsky</li>
+            <li>"Simplicity, carried to an extreme, becomes elegance." - Jon Franklin</li>
+            <li>"Design is the intermediary between information and understanding." - Hans Hofmann</li>
+            <li>"The only way to do great work is to love what you do." - Steve Jobs</li>
+            <li>"The best design is the simplest one that works." - Albert Einstein</li>
+            <li>"Design is not just what it looks like. Design is how it works." - Steve Jobs</li>
+            <li>"The role of the designer is that of a good, thoughtful host anticipating the needs of his guests." - Charles Eames</li>
+            <li>"Design creates culture. Culture shapes values. Values determine the future." - Robert L. Peters</li>
+            <li>"Design is where science and art break even." - Robin Mathew</li>
+            <li>"You can’t use up creativity. The more you use, the more you have." - Maya Angelou</li>
+            <li>"Design is intelligence made visible." - Alina Wheeler</li>
+            <li>"Simplicity is the key to brilliance." - Bruce Lee</li>
+            <li>"Design is a solution to a problem. Art is a question to a problem." - John Maeda</li>
+            <li>"Design is not just what it looks like. Design is how it works." - Steve Jobs</li>
+        </ul>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Amazing Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
